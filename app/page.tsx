@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth/next";
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
   const numSearches = session?.user?.numSearches as number;
-
+  // .
   return (
     <div className="bg-background">
       <div className="relative isolate px-6 pt-14 lg:px-8">
