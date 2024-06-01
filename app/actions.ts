@@ -16,6 +16,32 @@ async function getSession() {
   return sessionCache;
 }
 
+export async function setNumSearches(formData: FormData) {
+  const numSearches = Number(formData.get("numSearches"));
+  const session = await getSession();
+  if (!session || !session.user) {
+    return {
+      error: "User not authenticated",
+    };
+  }
+
+  const userId = session.user.id;
+
+  try {
+    await prisma.user.update({
+      where: { id: userId },
+      data: { numSearches },
+    });
+
+    revalidatePath("/");
+  } catch (error: any) {
+    console.error("Error in setNumSearches function:", error);
+    return {
+      error: error.message,
+    };
+  }
+}
+
 export async function addSearch(formData: FormData) {
   const input = String(formData.get("input"));
   const session = await getSession();
@@ -48,6 +74,7 @@ export async function addSearch(formData: FormData) {
     });
 
     revalidatePath("/");
+    return data;
   } catch (error: any) {
     console.error("Error in addSearch function:", error);
     return {

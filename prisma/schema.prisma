@@ -47,7 +47,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   searches      Search[]
-
+  numSearches   Int             @default(10)
 }
 
 model VerificationToken {

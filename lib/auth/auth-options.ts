@@ -28,6 +28,18 @@ export const authOptions: NextAuthOptions = {
       if (session?.user) {
         // @ts-ignore
         session.user.id = user.id;
+
+        // Fetch the numSearches field from the database
+        const userInfo = await prisma.user.findUnique({
+          where: { id: user.id },
+          select: { numSearches: true, image: true }, // Include any other fields you need
+        });
+
+        // Include numSearches and other fields in the session object
+        if (userInfo) {
+          session.user.numSearches = userInfo.numSearches;
+          session.user.image = userInfo.image;
+        }
       }
       return session;
     },

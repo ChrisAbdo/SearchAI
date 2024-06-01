@@ -25,17 +25,17 @@ export default function RootLayout({
         <body>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
-            <TooltipProvider delayDuration={0}>
-              <div className="pl-[53px]">
+            <div className="pl-[53px]">
+              <TooltipProvider delayDuration={0}>
                 <Sidebar />
                 <TopNav />
                 {children}
-              </div>
-            </TooltipProvider>
+              </TooltipProvider>
+            </div>
           </ThemeProvider>
         </body>
       </AuthProvider>

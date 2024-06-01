@@ -22,9 +22,9 @@ export default function Sidebar() {
   const pathname = usePathname();
   return (
     <>
-      <aside className="inset-y fixed  left-0 z-20 flex h-full flex-col border-r">
+      <aside className="inset-y fixed bg-background left-0 z-20 flex h-full flex-col border-r">
         <div className="border-b p-2">
-          <Button variant="default" size="icon" aria-label="Home">
+          <Button variant="outline" size="icon" aria-label="Home">
             <Bird className="size-5" />
           </Button>
         </div>

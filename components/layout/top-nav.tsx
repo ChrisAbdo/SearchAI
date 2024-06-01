@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth/next";
 import React from "react";
 import ProfileDropdown from "../auth/profile-dropdown";
 import AuthDrawer from "../auth/auth-drawer";
+import { ModeToggle } from "./mode-toggle";
 
 export default async function TopNav() {
   const session = await getServerSession(authOptions);
@@ -11,7 +12,17 @@ export default async function TopNav() {
     <header className="sticky top-0 z-10 flex h-[53px] items-center gap-1 border-b bg-background px-3">
       <h1 className="text-xl font-semibold">BirdyAI</h1>
 
-      {session ? <ProfileDropdown /> : <AuthDrawer text="Sign In" />}
+      {session ? (
+        <>
+          <ProfileDropdown />
+          <ModeToggle />
+        </>
+      ) : (
+        <>
+          <AuthDrawer text="Sign In" />
+          <ModeToggle />
+        </>
+      )}
     </header>
   );
 }
