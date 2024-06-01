@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { GeistMono } from "geist/font/mono";
 
 import { AuthProvider } from "@/lib/auth/auth-provider";
-import Sidebar from "@/components/layout/sidebar";
+import { ThemeProvider } from "@/components/theme-provider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
-const inter = Inter({ subsets: ["latin"] });
+import Sidebar from "@/components/layout/sidebar";
+import TopNav from "@/components/layout/top-nav";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,15 +20,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={GeistMono.className} suppressHydrationWarning>
       <AuthProvider>
-        <body className={inter.className}>
-          <TooltipProvider delayDuration={0}>
-            <div className="grid h-screen w-full pl-[53px]">
-              <Sidebar />
-              {children}
-            </div>
-          </TooltipProvider>
+        <body>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <TooltipProvider delayDuration={0}>
+              <div className="pl-[53px]">
+                <Sidebar />
+                <TopNav />
+                {children}
+              </div>
+            </TooltipProvider>
+          </ThemeProvider>
         </body>
       </AuthProvider>
     </html>

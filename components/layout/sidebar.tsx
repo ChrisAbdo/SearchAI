@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
 import {
+  Bird,
   Globe,
   LifeBuoy,
   MessageSquareText,
-  Settings2,
   SquareTerminal,
   SquareUser,
-  Triangle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -25,8 +24,8 @@ export default function Sidebar() {
     <>
       <aside className="inset-y fixed  left-0 z-20 flex h-full flex-col border-r">
         <div className="border-b p-2">
-          <Button variant="outline" size="icon" aria-label="Home">
-            <Triangle className="size-5 fill-foreground" />
+          <Button variant="default" size="icon" aria-label="Home">
+            <Bird className="size-5" />
           </Button>
         </div>
         <nav className="grid gap-1 p-2">
@@ -80,21 +79,6 @@ export default function Sidebar() {
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5}>
               Explore
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-lg"
-                aria-label="Search Settings"
-              >
-                <Settings2 className="size-5" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="right" sideOffset={5}>
-              Search Settings
             </TooltipContent>
           </Tooltip>
         </nav>
