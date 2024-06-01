@@ -15,12 +15,35 @@ import {
   GithubLoginButton,
   GoogleLoginButton,
 } from "@/components/auth/login-buttons";
+import { ArrowDownLeft } from "lucide-react";
 
 export default function AuthDrawer({ text }: { text?: string }) {
   return (
     <Drawer>
       <DrawerTrigger asChild>
         <Button className="ml-auto gap-1.5 text-sm">{text}</Button>
+      </DrawerTrigger>
+      <DrawerContent className="h-1/2">
+        <DrawerHeader className="mx-auto mt-4 max-w-lg gap-4">
+          <DrawerTitle>Welcome to OSS Hub</DrawerTitle>
+          <DrawerDescription>
+            Sign in to create posts, comment on posts, upvote posts, and more!
+          </DrawerDescription>
+          <GithubLoginButton />
+          <GoogleLoginButton />
+        </DrawerHeader>
+      </DrawerContent>
+    </Drawer>
+  );
+}
+
+export function AuthDrawerQuestion() {
+  return (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button size="icon" variant="secondary">
+          <ArrowDownLeft className="size-5" />
+        </Button>
       </DrawerTrigger>
       <DrawerContent className="h-1/2">
         <DrawerHeader className="mx-auto mt-4 max-w-lg gap-4">

@@ -20,7 +20,7 @@ export default async function Dashboard() {
               Research made easy
             </h1>
 
-            <AskExa numSearches={numSearches} />
+            <AskExa numSearches={numSearches} session={session} />
           </div>
         </div>
       </div>

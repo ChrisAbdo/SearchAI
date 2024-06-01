@@ -9,8 +9,15 @@ import { ArrowUp, CornerDownLeft } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import AISettings from "./ai-settings";
 import { Separator } from "../ui/separator";
+import { AuthDrawerQuestion } from "../auth/auth-drawer";
 
-export default function AskExa({ numSearches }: { numSearches: number }) {
+export default function AskExa({
+  numSearches,
+  session,
+}: {
+  numSearches: number;
+  session: any;
+}) {
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
   const [result, setResult] = React.useState(null);
   const handleInput = () => {
@@ -51,14 +58,18 @@ export default function AskExa({ numSearches }: { numSearches: number }) {
             </div>
           </div>
           <div className="space-x-2">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button type="submit" size="icon" variant="secondary">
-                  <CornerDownLeft className="size-5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="bottom">Submit</TooltipContent>
-            </Tooltip>
+            {session ? (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button type="submit" size="icon" variant="secondary">
+                    <CornerDownLeft className="size-5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom">Submit</TooltipContent>
+              </Tooltip>
+            ) : (
+              <AuthDrawerQuestion />
+            )}
           </div>
         </div>
       </form>
