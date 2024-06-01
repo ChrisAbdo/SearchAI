@@ -5,6 +5,7 @@ import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 import { AuthProvider } from "@/lib/auth/auth-provider";
+import Sidebar from "@/components/layout/sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,12 @@ export default function RootLayout({
     <html lang="en">
       <AuthProvider>
         <body className={inter.className}>
-          <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
+          <TooltipProvider delayDuration={0}>
+            <div className="grid h-screen w-full pl-[53px]">
+              <Sidebar />
+              {children}
+            </div>
+          </TooltipProvider>
         </body>
       </AuthProvider>
     </html>
